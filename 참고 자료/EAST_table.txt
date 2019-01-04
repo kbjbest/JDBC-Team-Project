@@ -1,0 +1,97 @@
+drop table tb_member purge;
+create table tb_member (
+memberno number primary key,
+id varchar2(15) not null,
+pw varchar2(15) not null,
+name varchar2(10) not null,
+address varchar2(50),
+email varchar2(25),
+phone varchar2(15),
+constraint tb_member_id_uk UNIQUE (id)
+) segment creation immediate;
+
+
+drop sequence member_seq;
+create sequence member_seq;
+
+
+drop table tb_aviationinfo purge;
+create table tb_aviationinfo (
+planeno number,
+planecode varchar2(20),
+planename varchar2(10) not null,
+starttime varchar2(10) not null,
+arrivaltime varchar2(10) not null,
+startloc varchar2(20) not null,
+arrivalloc varchar2(20) not null,
+constraint tb_aviationinfo_planeno_pk primary key (planeno, planecode)
+) segment creation immediate;
+
+drop sequence aviationinfo_seq;
+create sequence aviationinfo_seq;
+
+
+drop table tb_reservations purge;
+create table tb_reservations (
+listno number primary key,
+memberno number not null,
+planeno number not null,
+seat varchar2(10) not null,
+startdate date not null,
+arrivaldate date not null,
+cancel char(1) not null
+) segment creation immediate;
+
+drop sequence reservations_seq;
+create sequence reservations_seq;
+
+insert into tb_member values(member_seq.nextval, 'admin', 'admin', '관리자', '서울시', 'admin@admin.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'aht', '1234', '안희태', '부천', 'test@test.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'ksr', '1234', '김성렬', '서울', 'test@test.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'kbj', '1234', '김범주', '경기', 'test@test.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'hwh', '1234', '함원혁', '인천', 'test@test.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'lyg', '1234', '이영광', '서울', 'test@test.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'ghj', '1234', '고희조', '일산', 'test@test.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'hsy', '1234', '황선영', '서울', 'test@test.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'test1', '1234', '테스터1', '고양시', 'test@test.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'test2', '1234', '테스터2', '대전', 'test@test.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'test3', '1234', '테스터3', '전라남도', 'test@test.com', '010-1234-5678');
+insert into tb_member values(member_seq.nextval, 'aaa', 'aaa', '트리플에이', '어딘가', 'aaa@aaa.com', '010-1234-5678');
+
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'A00000230', 'A', '00:00', '02:30', '서울', '제주');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'A05300730', 'A', '05:30', '07:30', '한국', '미국');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'A10301230', 'A', '10:30', '12:30', '한국', '중국');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'A15301730', 'A', '15:30', '17:30', '한국', '일본');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'A20302230', 'A', '20:30', '22:30', '한국', '영국');
+
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'D00000230', 'D', '00:00', '02:30', '제주', '서울');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'D05300730', 'D', '05:30', '07:30', '미국', '한국');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'D10301230', 'D', '10:30', '12:30', '중국', '한국');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'D15301730', 'D', '15:30', '17:30', '일본', '한본');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'D20302230', 'D', '20:30', '22:30', '영국', '한국');
+
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'J00000230', 'J', '00:00', '02:30', '미국', '중국');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'J05300730', 'J', '05:30', '07:30', '중국', '일본');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'J10301230', 'J', '10:30', '12:30', '일본', '영국');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'J15301730', 'J', '15:30', '17:30', '영국', '한국');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'J20302230', 'J', '20:30', '22:30', '서울', '부산');
+
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'E00000230', 'E', '00:00', '02:30', '중국', '미국');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'E05300730', 'E', '05:30', '07:30', '일본', '중국');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'E10301230', 'E', '10:30', '12:30', '영국', '일본');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'E15301730', 'E', '15:30', '17:30', '한국', '영국');
+insert into tb_aviationInfo values(aviationinfo_seq.nextval, 'E20302230', 'E', '20:30', '22:30', '부산', '서울');
+
+insert into tb_reservations values(reservations_seq.nextval, 2, 1, '4-C', '16-11-30', '16-11-30', 'n');
+insert into tb_reservations values(reservations_seq.nextval, 2, 4, '5-A', '16-12-03', '16-12-03', 'n');
+insert into tb_reservations values(reservations_seq.nextval, 2, 20, '2-D', '16-12-10', '16-12-10', 'n');
+insert into tb_reservations values(reservations_seq.nextval, 2, 20, '2-D', '16-12-11', '16-12-11', 'y');
+insert into tb_reservations values(reservations_seq.nextval, 4, 6, '3-A', '16-12-05', '16-12-05', 'n');
+insert into tb_reservations values(reservations_seq.nextval, 3, 11, '2-E', '16-12-01', '16-12-01', 'y');
+insert into tb_reservations values(reservations_seq.nextval, 6, 16, '6-D', '16-12-03', '16-12-03', 'n');
+insert into tb_reservations values(reservations_seq.nextval, 7, 7, '1-B', '16-12-05', '16-12-05', 'n');
+insert into tb_reservations values(reservations_seq.nextval, 8, 2, '4-B', '16-12-05', '16-12-05', 'y');
+insert into tb_reservations values(reservations_seq.nextval, 3, 13, '5-C', '16-12-06', '16-12-06', 'n');
+insert into tb_reservations values(reservations_seq.nextval, 5, 19, '1-D', '16-12-08', '16-12-08', 'n');
+
+commit;

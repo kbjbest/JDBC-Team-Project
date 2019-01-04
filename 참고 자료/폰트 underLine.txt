@@ -1,0 +1,3 @@
+Map att = btn_OK.getFont().getAttributes();
+			att.put(TextAttribute.UNDERLINE, TextAttribute.UNDERLINE_ON);
+			btn_OK.setFont(btn_OK.getFont().deriveFont(att));

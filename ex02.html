@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>제목</title>
+	<style type="text/css">
+		p {
+			border: 1px solid #333;
+		}
+		.relat {
+			position:relative; border: 1px solid #666;
+			height: 200px;
+		}
+		.absol {
+			position:absolute;
+			left: 30px;
+			top: 10px;
+			width: 500px;
+			border: 1px solid #999;
+			background: #ccc;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<p>첫 번째 문단</p>
+	<p>두 번째 문단</p>
+	<div class="relat">
+		<div class="absol">
+			relative가 적용된 요소 안에 absolute가 적용된 요소가 들어가면
+			absolute 요소는 relative가 적용된 요소를 기준으로 절대적 위치를 지정한다.
+		</div>
+	</div>
+</body>
+</html>
